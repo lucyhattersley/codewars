@@ -1,30 +1,35 @@
 from nose.tools import assert_equals
 
-def snail(array):
+def snail(array, return_list=[]):
     
-    # pop first list from array to return_list
-    if array:
-        return_list = array.pop(0)
+    try:
+        # pop first list from array to return_list
+        return_list = return_list + array.pop(0)
 
         # pop end list from array in holding
-    if array:
         holding = array.pop()
         holding.reverse()
 
         # walk array forward and pop last element of each list to return_list
-    if array:
         for l in array:
             return_list.append(l.pop())
 
-    if array:
         # reverse holding and add to return_list
         return_list = return_list + holding
+
         # walk array backward and pop first element of each to return list
         for l in array:
             return_list.append(l.pop(0))
+
+        
+        # recursion for inner loop
+        snail(array, return_list) 
+
+    except:
+        pass
+    
+    return return_list
        
-    else:
-        return return_list 
 
 array = [[1,2,3],
         [4,5,6],
