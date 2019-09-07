@@ -30,3 +30,36 @@ def test_smaller_numbers():
     assert_equals(next_smaller(123456798), 123456789)
     assert_equals(next_smaller(123456789), -1)
     assert_equals(next_smaller(1234567908), 1234567890)
+
+"""
+Step 1: remove tail. Index through number to find first instance of lower-than previous digit
+# 12345679 08
+1234567 98
+
+Step 2: locate tail of head
+# 9
+7
+
+Step 3: is value in tail lower than head? If so swap greatest lower value in tail with head
+# 8 <> 9
+7 # tail remains 7
+
+Head is now
+# 12345678
+1234567
+
+Tail is now:
+# 09
+98
+
+Step 4
+# Sort tail numbers smallest to greatest  (0 is high)
+# 90
+89
+
+Step 5
+Add head and tail
+#1234567890
+123456789
+
+"""
