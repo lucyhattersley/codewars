@@ -40,6 +40,7 @@ Step 2: locate tail of head
 # 9
 7
 
+THIS MAY BE WRONG! SORT VALUES (STEP 4) AND SEE IF NUMBER IS GREATER THEN SWAP LOWEST VALUE IN HEAD (STEP 3)
 Step 3: is value in tail lower than head? If so swap greatest lower value in tail with head
 # 8 <> 9
 7 # tail remains 7
