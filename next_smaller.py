@@ -34,33 +34,40 @@ def test_smaller_numbers():
 """
 Step 1: remove tail. Index through number to find first instance of lower-than previous digit
 # 12345679 08
-1234567 98
+# 1234567 98
+123456765 -> 123456756
 
 Step 2: locate tail of head
 # 9
-7
+# 7
+6
 
 THIS MAY BE WRONG! SORT VALUES (STEP 4) AND SEE IF NUMBER IS GREATER THEN SWAP LOWEST VALUE IN HEAD (STEP 3)
 Step 3: is value in tail lower than head? If so swap greatest lower value in tail with head
 # 8 <> 9
-7 # tail remains 7
+# 7 # tail remains 7
+
 
 Head is now
 # 12345678
-1234567
+# 1234567
+1234566
 
 Tail is now:
 # 09
-98
+# 98
+57
 
 Step 4
 # Sort tail numbers smallest to greatest  (0 is high)
 # 90
-89
+# 89
+57
 
 Step 5
 Add head and tail
 #1234567890
-123456789
+# 123456789
+123456657 != 123456756
 
 """
