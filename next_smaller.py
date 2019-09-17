@@ -3,22 +3,26 @@ from nose.tools import assert_equals
 import itertools
 
 def next_smaller(n):
-    numbers = []
+    n_list = [int(x) for x in str(n)]
+    print(n_list[::-1])
+
+# def next_smaller(n):
+#     numbers = []
     
-    digits = [int(x) for x in str(n)]
-    possibles_as_set = set(itertools.permutations(digits))
+#     digits = [int(x) for x in str(n)]
+#     possibles_as_set = set(itertools.permutations(digits))
 
-    for i in possibles_as_set:
-        numbers.append(int(''.join(str(x) for x in i)))
+#     for i in possibles_as_set:
+#         numbers.append(int(''.join(str(x) for x in i)))
 
-    possibles = [i for i in numbers if i < n]
+#     possibles = [i for i in numbers if i < n]
         
-    if possibles != [] and len(str(max(possibles))) == len(str(n)):
-        return(max(possibles))
-    else:
-        return(-1)
+#     if possibles != [] and len(str(max(possibles))) == len(str(n)):
+#         return(max(possibles))
+#     else:
+#         return(-1)
 
-result = next_smaller(135)
+result = next_smaller(907)
 print(result)
 
 def test_smaller_numbers():
@@ -32,42 +36,7 @@ def test_smaller_numbers():
     assert_equals(next_smaller(1234567908), 1234567890)
 
 """
-Step 1: remove tail. Index through number to find first instance of lower-than previous digit
-# 12345679 08
-# 1234567 98
-123456765 -> 123456756
-
-Step 2: locate tail of head
-# 9
-# 7
-6
-
-THIS MAY BE WRONG! SORT VALUES (STEP 4) AND SEE IF NUMBER IS GREATER THEN SWAP LOWEST VALUE IN HEAD (STEP 3)
-Step 3: is value in tail lower than head? If so swap greatest lower value in tail with head
-# 8 <> 9
-# 7 # tail remains 7
-
-
-Head is now
-# 12345678
-# 1234567
-1234566
-
-Tail is now:
-# 09
-# 98
-57
-
-Step 4
-# Sort tail numbers smallest to greatest  (0 is high)
-# 90
-# 89
-57
-
-Step 5
-Add head and tail
-#1234567890
-# 123456789
-123456657 != 123456756
+Start from the last digit to the first as long as the digits are decreasing or equal. 12[5]+increasing 3479, 5 > 3.
+From the increasing tail pick the element just smaller (4), and reverse the tail. 12(4)+decreasing 97[5]3.
 
 """
