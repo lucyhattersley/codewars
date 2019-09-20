@@ -1,10 +1,28 @@
 from nose.tools import assert_equals
 
-import itertools
-
 def next_smaller(n):
-    n_list = [int(x) for x in str(n)]
-    print(n_list[::-1])
+    digits = [int(x) for x in str(n)]
+    i = 0
+
+    while digits[-1^i] > digits[-1^i+1]:
+        i = i + 1
+
+    head = digits[:i]
+    tail = digits[i:]
+
+    for i in range(len(tail)):
+        if tail[i] < head[-1]:
+            try:
+                if tail[i] > tail[current_largest]:
+                    current_largest = i
+            except:
+                current_largest = i
+
+    temp = head[-1]
+    head[-1] = tail[current_largest]
+    tail[current_largest] = temp
+
+    return head + tail[::-1]
 
 # def next_smaller(n):
 #     numbers = []
@@ -22,8 +40,11 @@ def next_smaller(n):
 #     else:
 #         return(-1)
 
-result = next_smaller(907)
+result = next_smaller(1253479)
 print(result)
+
+def test_stackexchange():
+    assert_equals(next_smaller(1253479), 1249753)
 
 def test_smaller_numbers():
     assert_equals(next_smaller(907), 790)
