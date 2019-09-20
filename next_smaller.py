@@ -22,26 +22,9 @@ def next_smaller(n):
     head[-1] = tail[current_largest]
     tail[current_largest] = temp
 
-    return head + tail[::-1]
+    result = head + tail[::-1]
+    return int(''.join(map(str,result)))
 
-# def next_smaller(n):
-#     numbers = []
-    
-#     digits = [int(x) for x in str(n)]
-#     possibles_as_set = set(itertools.permutations(digits))
-
-#     for i in possibles_as_set:
-#         numbers.append(int(''.join(str(x) for x in i)))
-
-#     possibles = [i for i in numbers if i < n]
-        
-#     if possibles != [] and len(str(max(possibles))) == len(str(n)):
-#         return(max(possibles))
-#     else:
-#         return(-1)
-
-result = next_smaller(1253479)
-print(result)
 
 def test_stackexchange():
     assert_equals(next_smaller(1253479), 1249753)
