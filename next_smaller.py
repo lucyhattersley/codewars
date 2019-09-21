@@ -2,12 +2,12 @@ from nose.tools import assert_equals
 
 def next_smaller(n):
     digits = [int(x) for x in str(n)]
-    i = 0
 
     if all(digits[i] <= digits[i+1] for i in range(len(digits)-1)):
         return -1
 
-    while digits[-1^i] > digits[-1^i+1]:
+    i = 1
+    while digits[i] > digits[i-1]:
         i = i + 1
 
     head = digits[:i]
@@ -31,13 +31,14 @@ def next_smaller(n):
         result = head + tail[::-1]
         return int(''.join(map(str,result)))
 
+next_smaller(531)
+
 
 def test_stackexchange():
     assert_equals(next_smaller(1253479), 1249753)
 
 def test_907():
     assert_equals(next_smaller(907), 790)
-
 
 def test_531():
     assert_equals(next_smaller(531), 513)
