@@ -13,17 +13,20 @@ def next_smaller(n):
     head = digits[:i]
     tail = digits[i:]
 
-    for i in range(len(tail)):
-        if tail[i] < head[-1]:
-            try:
-                if tail[i] > tail[current_largest]:
-                    current_largest = i
-            except:
-                current_largest = i
+    tail_filtered = list(filter(lambda x: x < head[-1], tail))
+    current_largest = max(tail_filtered)
+
+    # for i in range(len(tail)):
+    #     if tail[i] < head[-1]:
+    #         try:
+    #             if tail[i] > tail[current_largest]:
+    #                 current_largest = i
+    #         except:
+    #             current_largest = i
 
     temp = head[-1]
-    head[-1] = tail[current_largest]
-    tail[current_largest] = temp
+    head[-1] = current_largest
+    current_largest = temp
 
     if head[0] == 0:
         return -1
@@ -32,7 +35,6 @@ def next_smaller(n):
         return int(''.join(map(str,result)))
 
 next_smaller(531)
-
 
 def test_stackexchange():
     assert_equals(next_smaller(1253479), 1249753)
