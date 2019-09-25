@@ -1,45 +1,93 @@
 from nose.tools import assert_equals
 
-def next_smaller(n):
-    digits = [int(x) for x in str(n)]
+# Code from geeksforgeeks
 
-    if all(digits[i] <= digits[i+1] for i in range(len(digits)-1)):
-        return -1
+# This code finds the next larger number with the same set of digits
 
-    i = 0
-    try:
-        while digits[i + 1] < digits[i]:
-            i = i + 1
-    except:
-        pass
+# Given number as int array, this function finds the  
+# greatest number and returns the number as integer 
+def findNext(number,n): 
+       
+     # Start from the right most digit and find the first 
+     # digit that is smaller than the digit next to it 
+     for i in range(n-1,0,-1): 
+         if number[i] > number[i-1]: 
+             break
+               
+     # If no such digit found,then all numbers are in  
+     # descending order, no greater number is possible 
+     if i == 0: 
+         print("Next number not possible")
+         return
+           
+     # Find the smallest digit on the right side of  
+     # (i-1)'th digit that is greater than number[i-1] 
+     x = number[i-1] 
+     smallest = i 
+     for j in range(i+1,n): 
+         if number[j] > x and number[j] < number[smallest]: 
+             smallest = j 
+           
+     # Swapping the above found smallest digit with (i-1)'th 
+     number[smallest],number[i-1] = number[i-1], number[smallest] 
+       
+     # X is the final number, in integer datatype  
+     x = 0
+     # Converting list upto i-1 into number 
+     for j in range(i): 
+         x = x * 10 + number[j] 
+       
+     # Sort the digits after i-1 in ascending order 
+     number = sorted(number[i:]) 
+     # converting the remaining sorted digits into number 
+     for j in range(n-i): 
+         x = x * 10 + number[j] 
+       
+     print("Next number with set of digits is",x)
 
-    # i = 1
-    # while digits[i] > digits[i-1]:
-    #     i = i + 1
+findNext([1,2,3],3)
 
-    head = digits[:i]
-    tail = digits[i:]
 
-    i = 0
-    for i in range(len(tail)):
-        if tail[i] < head[-1]:
-            try:
-                if tail[i] > tail[current_largest]:
-                    current_largest = i
-            except:
-                current_largest = i
+# def next_smaller(n):
+#     digits = [int(x) for x in str(n)]
 
-    temp = head[-1]
-    head[-1] = tail[current_largest]
-    tail[current_largest] = temp
+#     if all(digits[i] <= digits[i+1] for i in range(len(digits)-1)):
+#         return -1
 
-    if head[0] == 0:
-        return -1
-    else:
-        result = head + tail[::-1]
-        return int(''.join(map(str,result)))
+#     i = 0
+#     try:
+#         while digits[i + 1] < digits[i]:
+#             i = i + 1
+#     except:
+#         pass
 
-next_smaller(531)
+#     # i = 1
+#     # while digits[i] > digits[i-1]:
+#     #     i = i + 1
+
+#     head = digits[:i]
+#     tail = digits[i:]
+
+#     i = 0
+#     for i in range(len(tail)):
+#         if tail[i] < head[-1]:
+#             try:
+#                 if tail[i] > tail[current_largest]:
+#                     current_largest = i
+#             except:
+#                 current_largest = i
+
+#     temp = head[-1]
+#     head[-1] = tail[current_largest]
+#     tail[current_largest] = temp
+
+#     if head[0] == 0:
+#         return -1
+#     else:
+#         result = head + tail[::-1]
+#         return int(''.join(map(str,result)))
+
+# next_smaller(531)
 
 
 def test_stackexchange():
