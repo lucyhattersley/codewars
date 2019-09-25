@@ -42,9 +42,15 @@ proper_fractions(15)
 def test_1():
     assert_equals(proper_fractions(1), 0)
 
-# proper_fractions(1)==0
-# proper_fractions(2)==1
-# proper_fractions(5)==4
-# proper_fractions(15)==8
-# proper_fractions(25)==20
+def test_2():
+    assert_equals(proper_fractions(2), 1)
+
+def test_5():
+    assert_equals(proper_fractions(5), 4)
+
+def test_15():
+    assert_equals(proper_fractions(15), 8)
+
+def test_25():
+    assert_equals(proper_fractions(25), 20)
 
