@@ -17,14 +17,13 @@ def next_smaller(n):
     # Start from the right most digit and find the first 
     # digit that is greater than the digit next to it 
     for i in range(n_length-1,0,-1): 
-        if number[i] > number[i-1]: 
+        if number[i] < number[i-1]: 
             break
             
     # If no such digit found,then all numbers are in  
     # ascending order, no lower number is possible 
     if i == 0: 
-        print("Next number not possible")
-        return
+        return -1
         
     # Find the smallest digit on the right side of  
     # (i-1)'th digit that is lower than number[i-1] 
@@ -49,10 +48,9 @@ def next_smaller(n):
     for j in range(n_length-i): 
         x = x * 10 + number[j] 
     
-    print("Next number with set of digits is",x)
+    return x
 
 next_smaller(123)
-
 
 # def next_smaller(n):
 #     digits = [int(x) for x in str(n)]
@@ -116,6 +114,9 @@ def test_414():
 
 def test_123456798():
     assert_equals(next_smaller(123456798), 123456789)
+
+def test_123():
+    assert_equals(next_smaller(123),-1)
 
 def test_123456789():
     assert_equals(next_smaller(123456789), -1)
