@@ -6,53 +6,65 @@ from nose.tools import assert_equals
 # returns x the next smallest number
 # returns -1 if there is no smaller number with same set of digits
 # returns -1 if next smaller number begins with leading 0 
-def next_smaller(n):
+# def next_smaller(n):
 
-    # create number and n_length from n
-    number = [int(x) for x in str(n)]
-    n_length = len(number)  
+#     # create number and n_length from n
+#     number = [int(x) for x in str(n)]
+#     n_length = len(number)  
 
-    # Start from the right most digit and find the first 
-    # digit that is greater than the digit next to it 
-    for i in range(n_length-1,-1,-1): 
-        if number[i] < number[i-1]: 
-            break
+#     # Start from the right most digit and find the first 
+#     # digit that is greater than the digit next to it 
+#     for i in range(n_length-1,-1,-1): 
+#         if number[i] < number[i-1]: 
+#             break
             
-    # If no such digit found,then all numbers are in  
-    # ascending order, no lower number is possible 
-    if i == 0: 
-        return -1
+#     # If no such digit found,then all numbers are in  
+#     # ascending order, no lower number is possible 
+#     if i == 0: 
+#         return -1
         
-    # Find the smallest digit on the right side of  
-    # (i-1)'th digit that is lower than number[i-1] 
-    x = number[i-1] 
-    largest = i 
-    for j in range(i+1,n_length): 
-        if number[j] < x and number[j] > number[largest]: 
-            largest = j 
+#     # Find the smallest digit on the right side of  
+#     # (i-1)'th digit that is lower than number[i-1] 
+#     x = number[i-1] 
+#     largest = i 
+#     for j in range(i+1,n_length): 
+#         if number[j] < x and number[j] > number[largest]: 
+#             largest = j 
         
-    # Swapping the above found smallest digit with (i-1)'th 
-    number[largest],number[i-1] = number[i-1], number[largest] 
+#     # Swapping the above found smallest digit with (i-1)'th 
+#     number[largest],number[i-1] = number[i-1], number[largest] 
     
-    # X is the final number, in integer datatype  
-    x = 0
-    # Converting list upto i-1 into number 
-    for j in range(i): 
-        x = x * 10 + number[j] 
+#     # X is the final number, in integer datatype  
+#     x = 0
+#     # Converting list upto i-1 into number 
+#     for j in range(i): 
+#         x = x * 10 + number[j] 
     
-    # Sort the digits after i-1 in descending order 
-    number = sorted(number[i:], reverse=True) 
-    # converting the remaining sorted digits into number 
-    for j in range(n_length-i): 
-        x = x * 10 + number[j]
+#     # Sort the digits after i-1 in descending order 
+#     number = sorted(number[i:], reverse=True) 
+#     # converting the remaining sorted digits into number 
+#     for j in range(n_length-i): 
+#         x = x * 10 + number[j]
          
-    #return -1 if length is smaller (leading 0)
-    if len(str(x)) < n_length:
-        return -1
-    else:
-        return x
+#     #return -1 if length is smaller (leading 0)
+#     if len(str(x)) < n_length:
+#         return -1
+#     else:
+#         return x
 
-next_smaller(10)
+# next_smaller(10)
+
+# Best practice from CodeWars
+def next_smaller(n):
+    s = list(str(n))
+    i = j = len(s) - 1
+    while i > 0 and s[i - 1] <= s[i]: i -= 1
+    if i <= 0: return -1
+    while s[j] >= s[i - 1]: j -= 1
+    s[i - 1], s[j] = s[j], s[i - 1]
+    s[i:] = reversed(s[i:])
+    if s[0] == '0': return -1
+    return int(''.join(s))
 
 # def next_smaller(n):
 #     digits = [int(x) for x in str(n)]
