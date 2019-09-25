@@ -10,13 +10,12 @@ from nose.tools import assert_equals
 def next_smaller(n):
 
     # create number and n_length from n
-
     number = [int(x) for x in str(n)]
     n_length = len(number)  
 
     # Start from the right most digit and find the first 
     # digit that is greater than the digit next to it 
-    for i in range(n_length-1,0,-1): 
+    for i in range(n_length-1,-1,-1): 
         if number[i] < number[i-1]: 
             break
             
