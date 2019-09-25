@@ -6,13 +6,21 @@ def next_smaller(n):
     if all(digits[i] <= digits[i+1] for i in range(len(digits)-1)):
         return -1
 
-    i = 1
-    while digits[i] > digits[i-1]:
-        i = i + 1
+    i = 0
+    try:
+        while digits[i + 1] < digits[i]:
+            i = i + 1
+    except:
+        pass
+
+    # i = 1
+    # while digits[i] > digits[i-1]:
+    #     i = i + 1
 
     head = digits[:i]
     tail = digits[i:]
 
+    i = 0
     for i in range(len(tail)):
         if tail[i] < head[-1]:
             try:
