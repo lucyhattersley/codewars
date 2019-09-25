@@ -1,12 +1,11 @@
 from nose.tools import assert_equals
 
-# Code from geeksforgeeks
-
-# This code finds the next larger number with the same set of digits
-
 # Given number as int array, this function finds the  
-# greatest number and returns the number as integer
+# greatest number < n with the same set of digits
 # n = length of number 
+# returns x the next smallest number
+# returns -1 if there is no smaller number with same set of digits
+# returns -1 if next smaller number begins with leading 0 
 def next_smaller(n):
 
     # create number and n_length from n
@@ -122,6 +121,23 @@ def test_123456789():
 
 def test_1234567908():
     assert_equals(next_smaller(1234567908), 1234567890)
+
+
+"""
+Tests failing
+721 should equal -1
+ 10 should equal -1
+987654321 should equal -1
+66554433222 should equal -1
+98765 should equal -1
+33000 should equal -1
+1 should equal -1
+110 should equal -1
+990 should equal -1
+ 220 should equal -1
+31 should equal -1
+"""
+
 
 """
 Start from the last digit to the first as long as the digits are decreasing or equal. 12[5]+increasing 3479, 5 > 3.
