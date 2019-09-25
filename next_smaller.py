@@ -44,11 +44,15 @@ def next_smaller(n):
     number = sorted(number[i:], reverse=True) 
     # converting the remaining sorted digits into number 
     for j in range(n_length-i): 
-        x = x * 10 + number[j] 
-    
-    return x
+        x = x * 10 + number[j]
+         
+    #return -1 if length is smaller (leading 0)
+    if len(str(x)) < n_length:
+        return -1
+    else:
+        return x
 
-next_smaller(123)
+next_smaller(10)
 
 # def next_smaller(n):
 #     digits = [int(x) for x in str(n)]
@@ -122,11 +126,17 @@ def test_123456789():
 def test_1234567908():
     assert_equals(next_smaller(1234567908), 1234567890)
 
+# This test looks wrong. Should return 712
+def test_721():
+    assert_equals(next_smaller(721), -1)
+
+def test_10():
+    assert_equals(next_smaller(10), -1)
+    # 10 should equal -1
+
 
 """
 Tests failing
-721 should equal -1
- 10 should equal -1
 987654321 should equal -1
 66554433222 should equal -1
 98765 should equal -1
