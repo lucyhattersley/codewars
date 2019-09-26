@@ -21,20 +21,20 @@ Be ready to handle big numbers.
 from nose.tools import assert_equals
 
 from fractions import Fraction
-from math import gcd
 
 def proper_fractions(n):
+    def gcd(a, b):  
+        if a == 0: 
+            return b  
+        
+        return gcd(b%a, a) 
+ 
     count = 0
+
     for i in range(1,n):
-        print(Fraction(i,n))
-        # GCD(n,d)==1
         if gcd(i,n) == 1: 
-            print("True")
             count += 1
-        else:
-            print("false")
     
-    print(count)
     return count
 
 proper_fractions(15)
