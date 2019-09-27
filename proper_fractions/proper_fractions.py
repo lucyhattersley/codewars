@@ -18,7 +18,7 @@ proper_fractions(25)==20
 Be ready to handle big numbers.
 """
 
-# from nose.tools import assert_equals
+from nose.tools import assert_equals
 
 # from fractions import Fraction
 
@@ -37,21 +37,22 @@ Be ready to handle big numbers.
     
 #     return count
 
+import fractions
+import math
+
 def proper_fractions(n):
 
-    def gcd(a, b):
-        while b:
-            a, b=b, a%b
-        return a
+    if n == 1:
+        return 0
 
-    b=n-1
-    c=0
+    if n == 2:
+        return 1
 
-    while b:
-        if not gcd(n,b)-1:
-            c+=1
-        b-=1
-    return c
+    amount = 0        
+    for k in range(1, n + 1):
+        if fractions.gcd(n, k) == 1:
+            amount += 1
+    return amount
 
 proper_fractions(15)
 
@@ -60,6 +61,9 @@ def test_1():
 
 def test_2():
     assert_equals(proper_fractions(2), 1)
+
+def test_3():
+    assert_equals(proper_fractions(3), 2)
 
 def test_5():
     assert_equals(proper_fractions(5), 4)
