@@ -18,24 +18,40 @@ proper_fractions(25)==20
 Be ready to handle big numbers.
 """
 
-from nose.tools import assert_equals
+# from nose.tools import assert_equals
 
-from fractions import Fraction
+# from fractions import Fraction
+
+# def proper_fractions(n):
+#     def gcd(a, b):  
+#         if a == 0: 
+#             return b  
+        
+#         return gcd(b%a, a) 
+ 
+#     count = 0
+
+#     for i in range(1,n):
+#         if gcd(i,n) == 1: 
+#             count += 1
+    
+#     return count
 
 def proper_fractions(n):
-    def gcd(a, b):  
-        if a == 0: 
-            return b  
-        
-        return gcd(b%a, a) 
- 
-    count = 0
 
-    for i in range(1,n):
-        if gcd(i,n) == 1: 
-            count += 1
-    
-    return count
+    def gcd(a, b):
+        while b:
+            a, b=b, a%b
+        return a
+
+    b=n-1
+    c=0
+
+    while b:
+        if not gcd(n,b)-1:
+            c+=1
+        b-=1
+    return c
 
 proper_fractions(15)
 
