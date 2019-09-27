@@ -37,10 +37,20 @@ from nose.tools import assert_equals
     
 #     return count
 
-import fractions
 import math
+import fractions
 
 def proper_fractions(n):
+
+    def isprime(n):
+        if n & 1 == 0:
+            return 2
+        d= 3
+        while d * d <= n:
+            if n % d == 0:
+                return d
+            d= d + 2
+        return 0
 
     if n == 1:
         return 0
@@ -48,7 +58,10 @@ def proper_fractions(n):
     if n == 2:
         return 1
 
-    amount = 0        
+    if isprime(n):
+        return n-1
+
+    amount = 0
     for k in range(1, n + 1):
         if fractions.gcd(n, k) == 1:
             amount += 1
